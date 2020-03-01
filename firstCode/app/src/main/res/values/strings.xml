@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">firstCode</string>
+    <string name="destroy">Destroy</string>
 </resources>
