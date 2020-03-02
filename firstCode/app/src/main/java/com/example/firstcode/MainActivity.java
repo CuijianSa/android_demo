@@ -15,11 +15,14 @@ import android.widget.Button;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
-
+    public static final String TAG = "MainActivity";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Log.i(TAG, this.toString());
+        Log.i(TAG, getClass().getSimpleName());
 
         Button button = (Button) findViewById(R.id.button_1);
         button.setOnClickListener(new View.OnClickListener() {
@@ -53,6 +56,26 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
+
+        Button startNormalActivity = (Button) findViewById(R.id.normal_activity);
+        Button startDialogActivity = (Button) findViewById(R.id.dialog_activity);
+
+        startNormalActivity.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, NormalActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        startDialogActivity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, DialogActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -63,10 +86,10 @@ public class MainActivity extends AppCompatActivity {
                     String resultData = data.getStringExtra("data_return");
 
                     try {
-                        Log.d("FirstActivity", resultData);
+                        Log.i("FirstActivity", resultData);
                         Toast.makeText(MainActivity.this, "FirstActivity" + resultData, Toast.LENGTH_SHORT).show();
                     }catch(Exception e) {
-                        Log.d("FirstActivity", e.toString());
+                        Log.i("FirstActivity", e.toString());
                     }
                 }
                 break;
@@ -97,5 +120,35 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.i(TAG, "onStart");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.i(TAG, "onResume");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.i(TAG, "onStop");
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.i(TAG, "onDestroy");
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        Log.i(TAG, "onRestart");
     }
 }
