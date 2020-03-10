@@ -16,6 +16,12 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.example.fruit.Fruit;
+import com.example.fruit.FruitAdapter;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
     private Button button;
     private Button progressBarAddButton;
@@ -33,6 +39,8 @@ public class MainActivity extends AppCompatActivity {
     "Pear", "Grape", "Pineapple", "Strawberry", "Cherry", "Mango",
         "Pineapple", "Straberry"};
 
+    private List<Fruit> fruitList = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +55,10 @@ public class MainActivity extends AppCompatActivity {
         edit = (EditText) findViewById(R.id.edit_text);
         imageView = (ImageView) findViewById(R.id.image_view);
         progressBar = (ProgressBar) findViewById(R.id.process_bar);
+
+        initFruits();
+
+        FruitAdapter adapter = new FruitAdapter(MainActivity.this, R.layout.fruit_item, fruitList);
 
         button.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -142,11 +154,34 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(
-                MainActivity.this, android.R.layout.simple_list_item_1, data);
+//        ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+//                MainActivity.this, android.R.layout.simple_list_item_1, data);
         ListView listView = (ListView) findViewById(R.id.list_view);
         listView.setAdapter(adapter);
     }
 
-
+    private void initFruits() {
+        for(int i = 0; i < 2; i++) {
+            Fruit apple = new Fruit("Apple", R.drawable.apple_pic);
+            fruitList.add(apple);
+            Fruit banana = new Fruit("Banana", R.drawable.banana_pic);
+            fruitList.add(banana);
+            Fruit orange = new Fruit("Orange", R.drawable.orange_pic);
+            fruitList.add(orange);
+            Fruit watermelon = new Fruit("Watermelon", R.drawable.watermelon_pic);
+            fruitList.add(watermelon);
+            Fruit pear = new Fruit("Pear", R.drawable.pear_pic);
+            fruitList.add(pear);
+            Fruit grape = new Fruit("Grape", R.drawable.grape_pic);
+            fruitList.add(grape);
+            Fruit pineapple = new Fruit("Pineapple", R.drawable.pineapple_pic);
+            fruitList.add(pineapple);
+            Fruit strawberry = new Fruit("Strawberry", R.drawable.banana_pic);
+            fruitList.add(strawberry);
+            Fruit cherry = new Fruit("Cherry", R.drawable.banana_pic);
+            fruitList.add(cherry);
+            Fruit mango = new Fruit("Mango", R.drawable.banana_pic);
+            fruitList.add(mango);
+        }
+    }
 }

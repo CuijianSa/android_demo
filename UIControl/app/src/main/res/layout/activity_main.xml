@@ -22,8 +22,6 @@
             android:orientation="vertical">
 
             <include layout="@layout/title" />
-
-
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
