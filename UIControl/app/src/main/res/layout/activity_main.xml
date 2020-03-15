@@ -68,7 +68,21 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="frameLayout" />
-
+            <Button
+                android:id="@+id/listViewButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="listView" />
+            <Button
+                android:id="@+id/recyclerViewButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="recyclerView" />
+            <Button
+                android:id="@+id/ninePatch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="NinePathch" />
             <EditText
                 android:id="@+id/edit_text"
                 android:layout_width="match_parent"
@@ -87,11 +101,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:max="100" />
-
-            <ListView
-                android:id="@+id/list_view"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
         </LinearLayout>
     </ScrollView>
 

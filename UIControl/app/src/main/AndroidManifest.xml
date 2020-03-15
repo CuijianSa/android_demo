@@ -9,6 +9,27 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".FruitRecylerView">
+            <intent-filter>
+                <action android:name="com.example.activity.RecyclerView" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".FruitListView" >
+            <intent-filter>
+                <action android:name="com.example.activity.ListView" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".NinePatch">
+            <intent-filter>
+                <action android:name="com.example.activity.NinePatch" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
         <activity android:name=".FrameLayout">
             <intent-filter>
                 <action android:name="com.example.activity.FrameLayout" />
@@ -16,7 +37,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".RelativeLayout" >
+        <activity android:name=".RelativeLayout">
             <intent-filter>
                 <action android:name="com.example.activity.RelativeLayout" />
 
