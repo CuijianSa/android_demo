@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
     private void replaceFragment(Fragment fragment) {
         FragmentManager fragmentManger = getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManger.beginTransaction();
-        transaction.replace(R.id.right_fragment, fragment);
+//        transaction.replace(R.id.right_fragment, fragment);
         transaction.addToBackStack(null);
         transaction.commit();
     }
