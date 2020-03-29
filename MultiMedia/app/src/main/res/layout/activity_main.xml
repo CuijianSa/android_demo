@@ -15,6 +15,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="camera album"/>
+
+        <Button
+            android:id="@+id/player_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="playeer"/>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
