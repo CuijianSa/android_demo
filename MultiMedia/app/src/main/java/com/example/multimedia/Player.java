@@ -73,13 +73,17 @@ public class Player extends AppCompatActivity implements View.OnClickListener {
         if (ContextCompat.checkSelfPermission(Player.this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(Player.this, new String[]{
                     Manifest.permission.WRITE_EXTERNAL_STORAGE}, REQUEST_FILE);
-        } else {
-            initMediaPlayer();
         }
     }
 
-    private void initMediaPlayer() {
-
+    public void initMediaPlayer(String uri) {
+        try {
+            File file = new File(uri);
+            mediaPlayer.setDataSource(file.getPath());
+            mediaPlayer.prepare();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -87,15 +91,9 @@ public class Player extends AppCompatActivity implements View.OnClickListener {
         switch (v.getId()) {
             case R.id.play:
                 if (!mediaPlayer.isPlaying()) {
-                    try {
-                        File file = new File(filePathTextView.getText().toString());
-                        mediaPlayer.setDataSource(file.getPath());
-                        mediaPlayer.prepare();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+                    mediaPlayer.start();
                 }
-                mediaPlayer.start();
+
                 break;
             case R.id.pause:
                 if (mediaPlayer.isPlaying()) {
@@ -105,6 +103,7 @@ public class Player extends AppCompatActivity implements View.OnClickListener {
             case R.id.stop:
                 if (mediaPlayer.isPlaying()) {
                     mediaPlayer.reset();
+                    initMediaPlayer(filePathTextView.getText().toString());
                 }
                 break;
             default:
@@ -156,6 +155,8 @@ public class Player extends AppCompatActivity implements View.OnClickListener {
                     }
                     Log.d(TAG, "File Path: " + path);
                     filePathTextView.setText(path);
+
+                    initMediaPlayer(path);
                 }
             }
             break;
