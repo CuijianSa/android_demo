@@ -26,6 +26,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.VideoView;
 
 import java.io.File;
 import java.io.IOException;
@@ -40,8 +41,8 @@ public class Player extends AppCompatActivity implements View.OnClickListener {
     private Button stop;
     private Button file;
     private TextView filePathTextView;
-    private String filePath;
-    private MediaPlayer mediaPlayer = new MediaPlayer();
+    private VideoView videoView;
+//    private MediaPlayer mediaPlayer = new MediaPlayer();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +54,7 @@ public class Player extends AppCompatActivity implements View.OnClickListener {
         stop = findViewById(R.id.stop);
         file = findViewById(R.id.file);
         filePathTextView = findViewById(R.id.file_path);
+        videoView = findViewById(R.id.video_view);
 
         play.setOnClickListener(this);
         pause.setOnClickListener(this);
@@ -63,9 +65,10 @@ public class Player extends AppCompatActivity implements View.OnClickListener {
 //                <4.4 URI:content://media/external/images/media/164 含有文件的绝对路径
 //                >4.4URI ：content://com.android.providers.media.documents/document/image:3951，只有文件的相对编号
                 Intent intent = new Intent(Intent.ACTION_PICK);
-//                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
                 intent.addCategory(Intent.CATEGORY_OPENABLE);
                 intent.setType("*/*");
+//                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+//                intent.setType("video/*");
                 startActivityForResult(intent, REQUEST_FILE);
             }
         });
@@ -77,34 +80,47 @@ public class Player extends AppCompatActivity implements View.OnClickListener {
     }
 
     public void initMediaPlayer(String uri) {
-        try {
-            File file = new File(uri);
-            mediaPlayer.setDataSource(file.getPath());
-            mediaPlayer.prepare();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        File file = new File(uri);
+        videoView.setVideoPath(file.getPath());
+//        try {
+//            File file = new File(uri);
+//            videoView.setVideoPath(file.getPath());
+//            mediaPlayer.setDataSource(file.getPath());
+//            mediaPlayer.prepare();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.play:
-                if (!mediaPlayer.isPlaying()) {
-                    mediaPlayer.start();
+                if (!videoView.isPlaying()) {
+                    videoView.start();
                 }
+//                if (!mediaPlayer.isPlaying()) {
+//                    mediaPlayer.start();
+//                }
 
                 break;
             case R.id.pause:
-                if (mediaPlayer.isPlaying()) {
-                    mediaPlayer.pause();
+                if (videoView.isPlaying()) {
+                    videoView.pause();
                 }
+//                if (mediaPlayer.isPlaying()) {
+//                    mediaPlayer.pause();
+//                }
                 break;
             case R.id.stop:
-                if (mediaPlayer.isPlaying()) {
-                    mediaPlayer.reset();
+                if (videoView.isPlaying()) {
+                    videoView.stopPlayback();
                     initMediaPlayer(filePathTextView.getText().toString());
                 }
+//                if (mediaPlayer.isPlaying()) {
+//                    mediaPlayer.reset();
+//                    initMediaPlayer(filePathTextView.getText().toString());
+//                }
                 break;
             default:
                 break;
@@ -114,10 +130,13 @@ public class Player extends AppCompatActivity implements View.OnClickListener {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (mediaPlayer != null) {
-            mediaPlayer.stop();
-            mediaPlayer.release();
+        if (videoView != null) {
+            videoView.suspend();
         }
+//        if (mediaPlayer != null) {
+//            mediaPlayer.stop();
+//            mediaPlayer.release();
+//        }
     }
 
     public static String getPath(Context context, Uri uri) throws URISyntaxException {

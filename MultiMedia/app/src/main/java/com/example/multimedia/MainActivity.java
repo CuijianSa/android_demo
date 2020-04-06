@@ -11,6 +11,7 @@ public class MainActivity extends AppCompatActivity {
 
     private Button cameraAlbumButton;
     private Button playerButton;
+    private Button surfaceViewButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,5 +35,14 @@ public class MainActivity extends AppCompatActivity {
                 startActivityForResult(intent, 1);
             }
         });
+        surfaceViewButton = findViewById(R.id.surface_view_button);
+        surfaceViewButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent("com.example.multimedia.SurfaceView");
+                startActivityForResult(intent, 1);
+            }
+        });
+
     }
 }

@@ -4,7 +4,8 @@
     package="com.example.multimedia">
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"
+    <uses-permission
+        android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"
         tools:ignore="ProtectedPermissions" />
 
     <application
@@ -14,13 +15,20 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Player">
+        <activity android:name=".SurfaceView">
             <intent-filter>
-                <action android:name="com.example.multimedia.player" />
+                <action android:name="com.example.multimedia.SurfaceView" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
 
+        </activity>
+        <activity android:name=".Player">
+            <intent-filter>
+                <action android:name="com.example.multimedia.player" />
 
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
         </activity>
 
         <provider
